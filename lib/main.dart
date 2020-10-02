@@ -21,6 +21,15 @@ double manipulator(double num){
   return num + (Random().nextInt(10));
 }
 
+
+List<String> recentLocations = [
+  "Manila",
+  "Marikina",
+  "Makati",
+  "Taguig",
+  "San Mateo"
+];
+
 class _GGState extends State<GG> {
 
   double count = 0.0;
@@ -61,6 +70,26 @@ class _GGState extends State<GG> {
             Text('KILLS',style: ts2),
               SizedBox(height: 10,),
             Text('$count',style: warning),
+              SizedBox(height: 20,),
+            Center(child: Text('RECENT LOCATIONS',style: ts2)),
+              SizedBox(height: 10,),
+            Center(
+              child: Column(children:
+
+                recentLocations.map((e) => Text("$e",style: tsList)).toList()
+
+              ),
+            ),
+
+
+
+
+
+
+
+
+
+
             SizedBox(height: 30,),
 
             Row(
@@ -86,6 +115,8 @@ TextStyle ts0 = TextStyle(color: Colors.grey, letterSpacing: 1.0);
 TextStyle ts1 = TextStyle(color: Colors.amber);
 TextStyle ts2 = TextStyle(color: Colors.amber, letterSpacing: 2.0);
 TextStyle ts3 = TextStyle(color: Colors.grey, letterSpacing: 2.0, fontSize: 28, fontWeight: FontWeight.bold);
+TextStyle tsList = TextStyle(color: Colors.white, letterSpacing: 2.0, fontSize: 16, fontWeight: FontWeight.bold);
+
 TextStyle warning = TextStyle(color: Colors.red, letterSpacing: 2.0, fontSize: 28, fontWeight: FontWeight.bold);
 
 
