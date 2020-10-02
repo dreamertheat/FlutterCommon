@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'models/Locationee.dart';
+
 void main() {
   return runApp(MaterialApp(
 
@@ -22,12 +24,15 @@ double manipulator(double num){
 }
 
 
-List<String> recentLocations = [
-  "Manila",
-  "Marikina",
-  "Makati",
-  "Taguig",
-  "San Mateo"
+
+
+List<Locationee> locations = [
+  Locationee(1,"Manila","34,2","12-01-09"),
+  Locationee(2,"Marikina","67,66","09-01-09"),
+  Locationee(3,"Makati","98,24","08-01-09"),
+  Locationee(4,"Taguig","110,333","07-01-09"),
+  Locationee(5,"San Mateo","210,233","06-01-09"),
+
 ];
 
 class _GGState extends State<GG> {
@@ -43,12 +48,12 @@ class _GGState extends State<GG> {
         onPressed: (){ setState(() {
           count = manipulator(count);
         });},
-        child: Icon(Icons.ac_unit),
+        child: Icon(Icons.whatshot),
       ),
       appBar: AppBar(
         brightness: Brightness.dark,
         backgroundColor: Colors.black,
-        title: Text("OWNAGE",style: ts1),
+        title: Text("LE PROFILE",style: ts1),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -61,11 +66,15 @@ class _GGState extends State<GG> {
             Divider(height: 60, color: Colors.grey[100]),
             Text('NAME',style: ts2),
               SizedBox(height: 10,),
-            Text("RACOONER",style: ts3),
+            Text("MIZOWA BASTION",style: ts3),
               SizedBox(height: 30,),
             Text('STATUS',style: ts2),
               SizedBox(height: 10,),
             Text('MISSING',style: warning),
+              SizedBox(height: 10,),
+            Text('THREAT LEVEL',style: ts2),
+              SizedBox(height: 10,),
+            Text('URBAN 3-A',style: warning),
               SizedBox(height: 10,),
             Text('KILLS',style: ts2),
               SizedBox(height: 10,),
@@ -76,7 +85,7 @@ class _GGState extends State<GG> {
             Center(
               child: Column(children:
 
-                recentLocations.map((e) => Text("$e",style: tsList)).toList()
+                locations.map((e) => Text("${e.id} ${e.name}",style: tsList)).toList()
 
               ),
             ),
@@ -90,14 +99,34 @@ class _GGState extends State<GG> {
 
 
 
-            SizedBox(height: 30,),
+            SizedBox(height: 50,),
 
             Row(
 
               children: [
                 Icon(Icons.email,color:Colors.grey),
                 SizedBox(width: 10,),
-                Text("Owning@ownage.com", style:ts0)
+                Text("mizowamar@ownage.com", style:ts0)
+
+              ],
+
+            ),
+            Row(
+
+              children: [
+                Icon(Icons.phone,color:Colors.grey),
+                SizedBox(width: 10,),
+                Text("639690001111", style:ts0)
+
+              ],
+
+            ),
+            Row(
+
+              children: [
+                Icon(Icons.card_travel,color:Colors.grey),
+                SizedBox(width: 10,),
+                Text("0122222121200878", style:ts0)
 
               ],
 
