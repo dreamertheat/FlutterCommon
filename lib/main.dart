@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
+import 'package:toast/toast.dart';
 import 'models/Locationee.dart';
 
 void main() {
@@ -24,6 +24,34 @@ double manipulator(double num){
 }
 
 
+
+class Karudo extends StatelessWidget {
+  
+  final Locationee loc;
+  final Function delete;
+
+  Karudo(this.loc,this.delete);
+
+  @override
+  Widget build(BuildContext context) {
+    return
+
+      Card(
+
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("${loc.id}",style: ts1,),
+            Text(loc.name,style: ts2,),
+            IconButton(icon: Icon(Icons.map,color: Colors.blueAccent,), onPressed: delete)
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
 List<Locationee> locations = [
@@ -84,10 +112,10 @@ class _GGState extends State<GG> {
               SizedBox(height: 10,),
             Center(
               child: Column(children:
-
-                locations.map((e) => Text("${e.id} ${e.name}",style: tsList)).toList()
-
-              ),
+                    locations.map((e) => Karudo(e,(){ callToast(e.name,context); setState(() {
+                      locations.remove(e);
+                    }); })).toList()
+          ),
             ),
 
 
@@ -140,6 +168,12 @@ class _GGState extends State<GG> {
     );
   }
 }
+
+
+void callToast(String message, BuildContext bc){
+  Toast.show("${message}", bc, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
+}
+
 TextStyle ts0 = TextStyle(color: Colors.grey, letterSpacing: 1.0);
 TextStyle ts1 = TextStyle(color: Colors.amber);
 TextStyle ts2 = TextStyle(color: Colors.amber, letterSpacing: 2.0);
