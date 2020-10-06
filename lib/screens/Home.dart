@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/design/CustomCard.dart';
 import 'package:flutter_app/design/Design.dart';
 import 'package:flutter_app/models/Locationee.dart';
+import 'package:flutter_app/utilities/CommonTools.dart';
 import 'package:toast/toast.dart';
 
 
@@ -57,36 +58,37 @@ class _GGState extends State<Home> {
       ),
       body: Padding(
           padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(child: CircleAvatar(backgroundImage: NetworkImage('https://i.imgur.com/kGjXf.jpg'), radius: 50, backgroundColor: Colors.blue,)),
-              Divider(height: 60, color: Colors.grey[100]),
-              Text('NAME',style: ts2),
-              SizedBox(height: 10,),
-              Text("MIZOWA BASTION",style: ts3),
-              SizedBox(height: 30,),
-              Text('STATUS',style: ts2),
-              SizedBox(height: 10,),
-              Text('MISSING',style: warning),
-              SizedBox(height: 10,),
-              Text('THREAT LEVEL',style: ts2),
-              SizedBox(height: 10,),
-              Text('URBAN 3-A',style: warning),
-              SizedBox(height: 10,),
-              Text('KILLS',style: ts2),
-              SizedBox(height: 10,),
-              Text('$count',style: warning),
-              SizedBox(height: 20,),
-              Center(child: Text('RECENT LOCATIONS',style: ts2)),
-              SizedBox(height: 10,),
-              Center(
-                child: Column(children:
-                locations.map((e) => CustomCard(e,(){ callToast(e.name,context); setState(() {
-                  locations.remove(e);
-                }); })).toList()
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(child: CircleAvatar(backgroundImage: NetworkImage('https://i.imgur.com/kGjXf.jpg'), radius: 50, backgroundColor: Colors.blue,)),
+                Divider(height: 60, color: Colors.grey[100]),
+                Text('NAME',style: ts2),
+                SizedBox(height: 10,),
+                Text("MIZOWA BASTION",style: ts3),
+                SizedBox(height: 30,),
+                Text('STATUS',style: ts2),
+                SizedBox(height: 10,),
+                Text('MISSING',style: warning),
+                SizedBox(height: 10,),
+                Text('THREAT LEVEL',style: ts2),
+                SizedBox(height: 10,),
+                Text('URBAN 3-A',style: warning),
+                SizedBox(height: 10,),
+                Text('KILLS',style: ts2),
+                SizedBox(height: 10,),
+                Text('$count',style: warning),
+                SizedBox(height: 20,),
+                Center(child: Text('RECENT LOCATIONS',style: ts2)),
+                SizedBox(height: 10,),
+                Container(
+                  child: Column(children:
+                  locations.map((e) => CustomCard(e,(){ callToast(e.name,context); setState(() {
+                    locations.remove(e);
+                  }); })).toList()
+                  ),
                 ),
-              ),
 
 
 
@@ -97,42 +99,43 @@ class _GGState extends State<Home> {
 
 
 
-              SizedBox(height: 50,),
+                SizedBox(height: 50,),
 
-              Row(
+                Row(
 
-                children: [
-                  Icon(Icons.email,color:Colors.grey),
-                  SizedBox(width: 10,),
-                  Text("mizowamar@ownage.com", style:ts0)
+                  children: [
+                    Icon(Icons.email,color:Colors.grey),
+                    SizedBox(width: 10,),
+                    Text("mizowamar@ownage.com", style:ts0)
 
-                ],
+                  ],
 
-              ),
-              Row(
+                ),
+                Row(
 
-                children: [
-                  Icon(Icons.phone,color:Colors.grey),
-                  SizedBox(width: 10,),
-                  Text("639690001111", style:ts0)
+                  children: [
+                    Icon(Icons.phone,color:Colors.grey),
+                    SizedBox(width: 10,),
+                    Text("639690001111", style:ts0)
 
-                ],
+                  ],
 
-              ),
-              Row(
+                ),
+                Row(
 
-                children: [
-                  Icon(Icons.card_travel,color:Colors.grey),
-                  SizedBox(width: 10,),
-                  Text("0122222121200878", style:ts0)
+                  children: [
+                    Icon(Icons.card_travel,color:Colors.grey),
+                    SizedBox(width: 10,),
+                    Text("0122222121200878", style:ts0)
 
-                ],
+                  ],
 
-              )
+                )
 
 
-            ],
+              ],
 
+            ),
           )
       ),
     );
@@ -140,8 +143,5 @@ class _GGState extends State<Home> {
 }
 
 
-void callToast(String message, BuildContext bc){
-  Toast.show("${message}", bc, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
-}
 
 

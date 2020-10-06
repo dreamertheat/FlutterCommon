@@ -16,15 +16,23 @@ class CustomCard extends StatelessWidget {
     return
 
       Card(
-
+        color: Colors.blueGrey,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
+
+          padding: const EdgeInsets.all(0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("${loc.id}",style: ts1,),
-              Text(loc.name,style: ts2,),
-              IconButton(icon: Icon(Icons.map,color: Colors.blueAccent,), onPressed: delete)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("${loc.id}  - ",style: ts1,),
+                  Text(loc.name,style: ts3,),
+                  IconButton(icon: Icon(Icons.map,color: Colors.redAccent,size: 50,), onPressed: delete)
+                ],
+              )
+
             ],
           ),
         ),
