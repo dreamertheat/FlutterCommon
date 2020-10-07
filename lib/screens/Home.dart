@@ -5,23 +5,43 @@ import 'package:flutter_app/design/CustomCard.dart';
 import 'package:flutter_app/design/Design.dart';
 import 'package:flutter_app/models/Locationee.dart';
 import 'package:flutter_app/utilities/CommonTools.dart';
-import 'package:toast/toast.dart';
 
 
 
 
 class Home extends StatefulWidget {
+
   @override
-  _GGState createState() => _GGState();
+  State createState() {
+    print("HOME STATE CALLED");
+    return HomeState();
+  }
 }
 
 
 double manipulator(double num){
+  logger(2);
   return num + (Random().nextInt(10));
 }
 
 
+void logger(int seconds)async {
+  String x = await Future.delayed(Duration(seconds: 5), (){
+    return "logger1";
+  });
+  String y =  await Future.delayed(Duration(seconds: 3), (){
+    return "logger2"+x;
+  });
 
+  String z =  await Future.delayed(Duration(seconds: 3), (){
+    return "logger3"+y;
+  });
+  String v =  await Future.delayed(Duration(seconds: 3), (){
+    return "logger4"+z;
+  });
+
+  print("loggerAll "+v);
+}
 
 
 
@@ -34,12 +54,13 @@ List<Locationee> locations = [
 
 ];
 
-class _GGState extends State<Home> {
+class HomeState extends State<Home> {
 
   double count = 0.0;
 
   @override
   Widget build(BuildContext context) {
+    print("rebuilding home");
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: Container(child: Image.network('https://i.imgur.com/kGjXf.jpg')),
@@ -62,7 +83,7 @@ class _GGState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: CircleAvatar(backgroundImage: NetworkImage('https://i.imgur.com/kGjXf.jpg'), radius: 50, backgroundColor: Colors.blue,)),
+                Center(child: CircleAvatar(backgroundImage: NetworkImage('https://i.imgur.com/kGjXf.jpg'), radius: 50, backgroundColor: Colors.black,)),
                 Divider(height: 60, color: Colors.grey[100]),
                 Text('NAME',style: ts2),
                 SizedBox(height: 10,),
@@ -84,7 +105,8 @@ class _GGState extends State<Home> {
                 SizedBox(height: 10,),
                 Container(
                   child: Column(children:
-                  locations.map((e) => CustomCard(e,(){ callToast(e.name,context); setState(() {
+                  locations.map((e) => CustomCard(e,(){
+                    callToast(e.coordinates,context); setState(() {
                     locations.remove(e);
                   }); })).toList()
                   ),

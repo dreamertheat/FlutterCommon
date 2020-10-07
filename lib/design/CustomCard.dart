@@ -29,7 +29,7 @@ class CustomCard extends StatelessWidget {
                 children: [
                   Text("${loc.id}  - ",style: ts1,),
                   Text(loc.name,style: ts3,),
-                  IconButton(icon: Icon(Icons.map,color: Colors.redAccent,size: 50,), onPressed: delete)
+                  IconButton(icon: Icon(Icons.gps_fixed,color: Colors.redAccent,size: 50,), onPressed: delete)
                 ],
               )
 
