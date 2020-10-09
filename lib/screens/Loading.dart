@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/design/Design.dart';
+import 'package:flutter_app/provider/WorldTime.dart';
 import 'package:flutter_app/utilities/CommonTools.dart';
 import 'package:http/http.dart';
 
@@ -21,12 +22,7 @@ class Loading extends StatefulWidget {
   }
 }
 
-Future<String> callMockData() async{
 
-  Response response = await get("https://jsonplaceholder.typicode.com/todos/1");
-  Map data = jsonDecode(response.body);
-  return data["title"];
-}
 
 class _LoadingState extends State<Loading> {
 
@@ -35,8 +31,8 @@ class _LoadingState extends State<Loading> {
 
   _LoadingState(){
 
-      callMockData().then((value) => setState(() {
-          name = value;
+      WorldTime("asia", "manila").getTime().then((value) =>  setState(() {
+        name = value;
       }));
 
 
