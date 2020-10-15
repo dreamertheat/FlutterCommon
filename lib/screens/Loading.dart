@@ -26,13 +26,13 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  String name="loading data....";
+  String data="loading data....";
 
 
   _LoadingState(){
 
       WorldTime("asia", "manila").getTime().then((value) =>  setState(() {
-        name = value;
+        data = value;
       }));
 
 
@@ -42,7 +42,7 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    print(name);
+    print(data);
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(title: Text("Loading", style: ts1), backgroundColor: Colors.black87,centerTitle: true,
@@ -50,8 +50,8 @@ class _LoadingState extends State<Loading> {
       body: Center(
         child: FlatButton.icon(onPressed: (){
           callToast("From loading",context);
-          Navigator.pushNamed(context,"/home");
-        }, icon: Icon(Icons.play_arrow,color: Colors.amberAccent,), label: Text("$name")),
+          Navigator.pushReplacementNamed(context,"/home",arguments: {"time":data});
+        }, icon: Icon(Icons.play_arrow,color: Colors.amberAccent,), label: Text("$data")),
       ),
     );
   }

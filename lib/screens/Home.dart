@@ -57,10 +57,11 @@ List<Locationee> locations = [
 class HomeState extends State<Home> {
 
   double count = 0.0;
-
+  Map data = {};
   @override
   Widget build(BuildContext context) {
-    print("rebuilding home");
+    data = ModalRoute.of(context).settings.arguments;
+    print(data);
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: Container(child: Image.network('https://i.imgur.com/kGjXf.jpg')),
