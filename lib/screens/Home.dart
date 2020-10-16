@@ -5,6 +5,7 @@ import 'package:flutter_app/design/CustomCard.dart';
 import 'package:flutter_app/design/Design.dart';
 import 'package:flutter_app/models/Locationee.dart';
 import 'package:flutter_app/utilities/CommonTools.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 
@@ -153,6 +154,15 @@ class HomeState extends State<Home> {
 
                   ],
 
+                ),
+                Row(
+
+                  children: [
+                    Icon(Icons.timer,color:Colors.grey),
+                    SizedBox(width: 10,),
+                    getTime(data["time"])
+                  ],
+
                 )
 
 
@@ -165,6 +175,12 @@ class HomeState extends State<Home> {
   }
 }
 
-
+Widget getTime(dynamic x){
+  if(x!=null){
+    return Text("$x", style:ts0);
+  }else{
+    return SpinKitFadingFour(size: 80,color: Colors.amber);
+  }
+}
 
 

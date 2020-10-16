@@ -13,13 +13,13 @@ class WorldTime{
   WorldTime(this.continent, this.capital);
 
 
-  Future<String> getTime() async{
+  Future<Map> getTime() async{
 
       Response res = await get("http://worldtimeapi.org/api/timezone/${continent}/${capital}");
       print(res.body);
       Map map = jsonDecode(res.body);
 
-      return map["datetime"];
+      return map;
   }
 
 
