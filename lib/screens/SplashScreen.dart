@@ -67,22 +67,23 @@ class _LoadingState extends State<SplashScreen> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              onTap: (){},
-              title: FutureBuilder<Map>(
-                future: Times[index].getTime(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text("${snapshot.data["timezone"]}");
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
-            ),
+          return FutureBuilder<Map>(
+            future: Times[index].getTime(),
+            builder: (context, snapshot) {
+              if(snapshot.hasData){
+                return Card(
+                  child: ListTile(
+                    onTap: (){
+                      callToast("${snapshot.data["datetime"]}",context);
+                    },
+                    title:  Text("${snapshot.data["timezone"]}"),
+                  ),
+                );
+              }else{
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+
           );
         },
         itemCount: Times.length,
@@ -91,6 +92,19 @@ class _LoadingState extends State<SplashScreen> {
   }
 }
 
+
+/*FutureBuilder<Map>(
+future: Times[index].getTime(),
+builder: (context, snapshot) {
+if (snapshot.hasData) {
+return Text("${snapshot.data["timezone"]}");
+} else {
+return Center(
+child: CircularProgressIndicator(),
+);
+}
+},
+)*/
 
 Widget create(WorldTime wt){
 
