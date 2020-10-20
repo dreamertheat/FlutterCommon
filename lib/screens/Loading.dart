@@ -14,6 +14,7 @@ import 'package:intl/intl.dart';
 
 class Loading extends StatefulWidget {
 
+
   
 
   @override
@@ -32,12 +33,7 @@ class _LoadingState extends State<Loading> {
 
   _LoadingState(){
 
-      WorldTime("asia", "manila").getTime().then((value) =>  setState(() {
-        String offset = value["utc_offset"].substring(1,3);
-        DateTime date = DateTime.parse(value["datetime"]);
-        date.add(Duration(hours: int.parse(offset)));
-        data = DateFormat.jm().format(date);
-      }));
+
 
 
   }
@@ -46,6 +42,18 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
+    Map mapper = ModalRoute.of(context).settings.arguments;
+
+
+
+    setState(() {
+      String offset = mapper["utc_offset"].substring(1,3);
+      DateTime date = DateTime.parse(mapper["datetime"]);
+      date.add(Duration(hours: int.parse(offset)));
+      data = DateFormat.jm().format(date);
+      print("$data");
+    });
+
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(title: Text("Loading", style: ts1), backgroundColor: Colors.black87,centerTitle: true,
@@ -53,7 +61,7 @@ class _LoadingState extends State<Loading> {
       body: Center(
         child: FlatButton.icon(onPressed: (){
           callToast("From loading",context);
-          Navigator.pushReplacementNamed(context,"/home",arguments: {"time":data});
+          Navigator.pushNamed(context,"/home",arguments: {"time":"$data"});
         }, icon: Icon(Icons.play_arrow,color: Colors.amberAccent,), label: Text("$data")),
       ),
     );

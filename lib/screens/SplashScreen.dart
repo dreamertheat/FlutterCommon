@@ -35,7 +35,12 @@ class _LoadingState extends State<SplashScreen> {
     WorldTime("europe", "stockholm"),
     WorldTime("europe", "berlin"),
     WorldTime("europe", "oslo"),
-    WorldTime("europe", "athens")
+    WorldTime("europe", "athens"),
+    WorldTime("asia", "shanghai"),
+    WorldTime("asia", "seoul"),
+    WorldTime("asia", "pyongyang"),
+    WorldTime("asia", "brunei"),
+    WorldTime("asia", "bangkok"),
   ];
 
   WorldTime f = null;
@@ -74,7 +79,13 @@ class _LoadingState extends State<SplashScreen> {
                 return Card(
                   child: ListTile(
                     onTap: (){
-                      callToast("${snapshot.data["datetime"]}",context);
+                      callToast(converter("${snapshot.data["raw_offset"]}","${snapshot.data["unixtime"]}"),context);
+
+                      /*Navigator.pushNamed(context,"/loading",arguments: {
+                        "datetime":"${snapshot.data['datetime']}",
+                        "utc_offset":"${snapshot.data['utc_offset']}"
+                      }
+                        );*/
                     },
                     title:  Text("${snapshot.data["timezone"]}"),
                   ),
@@ -92,6 +103,13 @@ class _LoadingState extends State<SplashScreen> {
   }
 }
 
+
+String converter(String utc, String dt){
+  final df = new DateFormat('dd-MM-yyyy hh:mm a');
+  int myvalue = int.parse(dt);
+  int offset = int.parse(utc);
+  return df.format(new DateTime.fromMillisecondsSinceEpoch((myvalue+offset)*1000));
+}
 
 /*FutureBuilder<Map>(
 future: Times[index].getTime(),
