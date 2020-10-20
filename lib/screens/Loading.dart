@@ -47,10 +47,8 @@ class _LoadingState extends State<Loading> {
 
 
     setState(() {
-      String offset = mapper["utc_offset"].substring(1,3);
-      DateTime date = DateTime.parse(mapper["datetime"]);
-      date.add(Duration(hours: int.parse(offset)));
-      data = DateFormat.jm().format(date);
+
+      data = mapper["time"];
       print("$data");
     });
 

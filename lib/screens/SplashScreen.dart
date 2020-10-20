@@ -81,11 +81,11 @@ class _LoadingState extends State<SplashScreen> {
                     onTap: (){
                       callToast(converter("${snapshot.data["raw_offset"]}","${snapshot.data["unixtime"]}"),context);
 
-                      /*Navigator.pushNamed(context,"/loading",arguments: {
-                        "datetime":"${snapshot.data['datetime']}",
-                        "utc_offset":"${snapshot.data['utc_offset']}"
+                      Navigator.pushNamed(context,"/loading",arguments: {
+                        "time":"${converter("${snapshot.data["raw_offset"]}","${snapshot.data["unixtime"]}")}",
+
                       }
-                        );*/
+                        );
                     },
                     title:  Text("${snapshot.data["timezone"]}"),
                   ),
